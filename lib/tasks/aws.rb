@@ -75,7 +75,7 @@ namespace :aws do
 
   task :settings do
     SETTINGS = YAML::parse(open("conf/settings.yaml")).transform
-    BUCKET_NAME = "#{STACK_NAME}-#{SETTINGS['aws_ssh_key_name']}"
+    BUCKET_NAME = "#{SETTINGS['aws_s3_bucket_name']}"
   end
 
   def s3
