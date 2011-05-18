@@ -31,7 +31,7 @@ DniKZWb36R7qpO9RMWgHbhUpkcT/EYSutIRgp+hYzQ==</license>
     </pipeline>
     <pipeline name="Development" labeltemplate="${upstreamArtifact}">
       <materials>
-        <git url="git://github.com/flessa/company-news-devops.git" />
+        <git url="" />
         <pipeline pipelineName="MainBuild" stageName="MainBuild" materialName="upstreamArtifact"/>
       </materials>
       <stage name="Deploy">
