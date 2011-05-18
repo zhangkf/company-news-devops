@@ -44,7 +44,7 @@ class admin inherits base {
     owner   => "go",
     group   => "go",
     mode    => 664,
-    source  => template("cruise-config.xml"),
+    content => template("cruise-config.xml.erb"),
     require => Package["go-server"],
   }
 
