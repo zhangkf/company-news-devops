@@ -1,10 +1,10 @@
 namespace :test do
-  desc "tests the puppet configuration on the test server (requires ENV['AWS_SSH_KEY'] to be set)"
+  desc "tests the puppet configuration on the test server"
   task :puppet_noop => :sync_files do
     apply_changes(false)
   end
 
-  desc "applies the puppet configuration on the test server (requires ENV['AWS_SSH_KEY'] to be set)"
+  desc "applies the puppet configuration on the test server"
   task :puppet_apply => :sync_files do
     apply_changes
   end
@@ -40,18 +40,10 @@ namespace :test do
   end
 
   def ssh(cmd)
-    %x{ssh #{ssh_credentials} -t ec2-user@#{ENV['TEST_SERVER']} 'sudo #{cmd}'}
+    %x{ssh -i #{SETTINGS[:aws_ssh_key_file]} -t ec2-user@#{ENV['TEST_SERVER']} 'sudo #{cmd}'}
   end
 
   def scp(from, to)
-    %x{scp #{ssh_credentials} #{from} ec2-user@#{ENV['TEST_SERVER']}:#{to}}
-  end
-
-  def ssh_credentials
-    if ENV['AWS_SSH_KEY'].nil?
-      raise Exception.new("Please provide your AWS ssh key via the AWS_SSH_KEY environment variable")
-    else
-      "-i #{ENV['AWS_SSH_KEY']}"
-    end
+    %x{scp -i #{SETTINGS[:aws_ssh_key_file]} #{from} ec2-user@#{ENV['TEST_SERVER']}:#{to}}
   end
 end

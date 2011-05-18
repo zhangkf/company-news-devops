@@ -34,6 +34,7 @@ namespace :aws do
     file "#{BUILD_DIR}/#{file_name}" => ["aws:settings", BUILD_DIR] do
       cloud = cloud_formation
       stack = find_stack(cloud)
+      fail "could find stack... did you provision your aws resources?".red
       puts "discovering #{file_name} address...".white
       address = stack["Outputs"].find { |output| output["OutputKey"] == key_name }["OutputValue"]
       puts "#{file_name} address: #{address}".green
