@@ -40,10 +40,10 @@ namespace :test do
   end
 
   def ssh(cmd)
-    %x{ssh -i #{SETTINGS[:aws_ssh_key_file]} -t ec2-user@#{ENV['TEST_SERVER']} 'sudo #{cmd}'}
+    %x{ssh -i #{SETTINGS["aws_ssh_key_file"]} -t ec2-user@#{ENV['TEST_SERVER']} 'sudo #{cmd}'}
   end
 
   def scp(from, to)
-    %x{scp -i #{SETTINGS[:aws_ssh_key_file]} #{from} ec2-user@#{ENV['TEST_SERVER']}:#{to}}
+    %x{scp -i #{SETTINGS["aws_ssh_key_file"]} #{from} ec2-user@#{ENV['TEST_SERVER']}:#{to}}
   end
 end
