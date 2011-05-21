@@ -36,7 +36,7 @@ class admin inherits base {
     provider => "rpm",
     ensure   => "present",
     source   => "http://s3-ap-southeast-1.amazonaws.com/company-news-bootstrap/go-agent-2.1.0-11943.noarch.rpm",
-    require  => Package["java-1.6.0-openjdk-devel"],
+    require  => [Package["java-1.6.0-openjdk-devel"], Package["ant"]],
   }
 
   file { "/etc/go/cruise-config.xml":
