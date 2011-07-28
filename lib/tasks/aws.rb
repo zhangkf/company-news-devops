@@ -6,7 +6,7 @@ require "fog/aws/cloud_formation"
 namespace :aws do
   AWS_DIR = "#{File.dirname(__FILE__)}/aws"
   BOOTSTRAP_FILE = "bootstrap.tar.gz"
-  STACK_NAME = "company-news"
+  STACK_NAME = "zhangkf-news"
 
   directory BUILD_DIR
 
@@ -24,7 +24,7 @@ namespace :aws do
                                          "PSK" => "W3lcom3%1"})
     stack = nil
     until stack
-      sleep 1
+      sleep 30
       stack = find_stack(cloud)
     end
     puts "your servers have been provisioned successfully".white
